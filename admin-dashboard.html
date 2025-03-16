@@ -52,18 +52,10 @@
         <div class="position-sticky pt-3">
           <h4 class="text-center">Admin Panel</h4>
           <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#products-section">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#categories-section">Categories</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#orders-section">Orders</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="#products-section">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="#categories-section">Categories</a></li>
+            <li class="nav-item"><a class="nav-link" href="#orders-section">Orders</a></li>
           </ul>
         </div>
       </nav>
@@ -141,7 +133,7 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- For demonstration, a static order row -->
+                <!-- Example static order row -->
                 <tr data-object-id="ORDER_OBJECT_ID">
                   <td>ORDER_OBJECT_ID</td>
                   <td>John Doe</td>
@@ -168,7 +160,9 @@
     Parse.initialize("dYITxG0Ku084MmAjH3aa4rCsYBphkHR1Ua7CcIKI", "nMlAh8q6Pf63Ji7mT7mZsAfOeL3Sj2Ikl6Af2VOT");
     Parse.serverURL = 'https://parseapi.back4app.com';
 
-    // Function to fetch and render products from Back4App
+    // ------------------------------------
+    // Function: Fetch and Render Products
+    // ------------------------------------
     async function fetchProducts() {
       const Product = Parse.Object.extend("Product");
       const query = new Parse.Query(Product);
@@ -176,6 +170,7 @@
         const products = await query.find();
         const productsTableBody = document.querySelector("#productsTable tbody");
         productsTableBody.innerHTML = ""; // Clear existing rows
+
         products.forEach(product => {
           const id = product.id;
           const name = product.get("name");
@@ -195,7 +190,7 @@
           `;
           productsTableBody.innerHTML += row;
         });
-        // Bind edit button events for dynamically created buttons
+        // Bind edit button events for the new buttons
         document.querySelectorAll(".btn-edit-product").forEach(button => {
           button.addEventListener("click", async function() {
             const productId = this.getAttribute("data-object-id");
@@ -219,7 +214,9 @@
       }
     }
 
-    // Add Product Function
+    // ------------------------------------
+    // Function: Add Product
+    // ------------------------------------
     async function addProduct(event) {
       event.preventDefault();
       const name = document.getElementById("productName").value;
@@ -227,12 +224,14 @@
       const price = parseFloat(document.getElementById("productPrice").value);
       const description = document.getElementById("productDescription").value;
       const imageInput = document.getElementById("productImage");
+
       const Product = Parse.Object.extend("Product");
       const product = new Product();
       product.set("name", name);
       product.set("category", category);
       product.set("price", price);
       product.set("description", description);
+
       if (imageInput.files.length > 0) {
         const file = imageInput.files[0];
         console.log("Attempting to upload file:", file);
@@ -247,17 +246,20 @@
           return;
         }
       }
+
       try {
         await product.save();
         alert("Product added successfully!");
-        fetchProducts(); // Refresh product list
+        fetchProducts(); // Refresh product list after adding
       } catch (error) {
         console.error("Error saving product:", error);
         alert("There was an error adding the product.");
       }
     }
 
-    // Edit Product Function
+    // ------------------------------------
+    // Function: Edit Product
+    // ------------------------------------
     async function editProduct(event) {
       event.preventDefault();
       const productId = document.getElementById("editProductId").value;
@@ -266,6 +268,7 @@
       const price = parseFloat(document.getElementById("editProductPrice").value);
       const description = document.getElementById("editProductDescription").value;
       const imageInput = document.getElementById("editProductImage");
+
       const Product = Parse.Object.extend("Product");
       const query = new Parse.Query(Product);
       try {
@@ -274,6 +277,7 @@
         product.set("category", category);
         product.set("price", price);
         product.set("description", description);
+
         if (imageInput.files.length > 0) {
           const file = imageInput.files[0];
           console.log("Attempting to upload new file for edit:", file);
@@ -284,31 +288,41 @@
         }
         await product.save();
         alert("Product updated successfully!");
-        fetchProducts(); // Refresh product list
+        fetchProducts(); // Refresh product list after editing
       } catch (error) {
         console.error("Error updating product:", error);
         alert("There was an error updating the product.");
       }
     }
 
-    // Add Category Function
+    // ------------------------------------
+    // Function: Add Category
+    // ------------------------------------
     async function addCategory(event) {
       event.preventDefault();
       const categoryName = document.getElementById("categoryName").value;
+      console.log("Attempting to add category:", categoryName);
+      if (!categoryName) {
+        alert("Category name is required.");
+        return;
+      }
       const Category = Parse.Object.extend("Category");
       const category = new Category();
       category.set("name", categoryName);
       try {
-        await category.save();
+        const result = await category.save();
+        console.log("Category saved successfully:", result);
         alert("Category added successfully!");
-        // Optionally refresh category list here
+        // Optionally, refresh the category list if you implement one
       } catch (error) {
         console.error("Error adding category:", error);
-        alert("Error adding category.");
+        alert("Error adding category: " + error.message);
       }
     }
 
-    // Dummy Order Functions
+    // ------------------------------------
+    // Dummy Functions for Order Actions
+    // ------------------------------------
     async function updateOrderStatus(orderId, newStatus) {
       const Order = Parse.Object.extend("Order");
       const query = new Parse.Query(Order);
@@ -323,21 +337,27 @@
       }
     }
 
-    // Bind events after DOM loads
+    // ------------------------------------
+    // Bind Event Listeners on DOM Load
+    // ------------------------------------
     document.addEventListener("DOMContentLoaded", function() {
-      fetchProducts();
+      fetchProducts(); // Load products on initial page load
+
       const addProductForm = document.getElementById("addProductForm");
-      if (addProductForm) {
+      if(addProductForm) {
         addProductForm.addEventListener("submit", addProduct);
       }
+
       const editProductForm = document.getElementById("editProductForm");
-      if (editProductForm) {
+      if(editProductForm) {
         editProductForm.addEventListener("submit", editProduct);
       }
+
       const addCategoryForm = document.getElementById("addCategoryForm");
-      if (addCategoryForm) {
+      if(addCategoryForm) {
         addCategoryForm.addEventListener("submit", addCategory);
       }
+
       // Bind order button events
       document.querySelectorAll(".btn-approve-order").forEach(button => {
         button.addEventListener("click", function() {
@@ -361,7 +381,9 @@
     });
   </script>
 
-  <!-- MODALS -->
+  <!-- ------------------------------
+       MODALS for Product and Category
+       ------------------------------ -->
   <!-- Add Product Modal -->
   <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -372,6 +394,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            <!-- Product Fields -->
             <div class="mb-3">
               <label for="productName" class="form-label">Product Name</label>
               <input type="text" class="form-control" id="productName" required>
