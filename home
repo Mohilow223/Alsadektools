@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToolStore - Home</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+    }
+    /* Header styling */
+    header {
+      background-color: #343a40;
+    }
+    header a {
+      text-decoration: none;
+      color: #ffffff;
+    }
+    /* Hero Section */
+    .hero-section {
+      background: url("banner-image.jpg") no-repeat center center;
+      background-size: cover;
+      color: #fff;
+      padding: 100px 0;
+      text-align: center;
+    }
+    /* Search Box */
+    .search-box {
+      max-width: 500px;
+      margin: 20px auto;
+    }
+    /* Category Cards */
+    .category-card {
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .category-card:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="p-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1 class="h3 mb-0 text-white">ToolStore</h1>
+      <nav>
+        <a href="#" class="me-3">Home</a>
+        <a href="#" class="me-3">About</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section with Search -->
+  <section class="hero-section">
+    <div class="container">
+      <h2 class="display-4">Welcome to ToolStore</h2>
+      <p>
+        Your one-stop shop for quality tools: hand tools, power tools,
+        carpentry tools, agricultural tools, welding tools, and more.
+      </p>
+      <form class="search-box">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search for tools..."
+          />
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="py-5">
+    <div class="container">
+      <h3 class="mb-4">Product Categories</h3>
+      <div class="row g-4">
+        <!-- Hand Tools -->
+        <div class="col-md-4">
+          <div class="card category-card">
+            <img
+              src="hand-tools.jpg"
+              class="card-img-top"
+              alt="Hand Tools"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Hand Tools</h5>
+              <p class="card-text">
+                Discover our range of hand tools for every task.
+              </p>
+              <a href="#" class="btn btn-outline-primary">Shop Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Power Tools -->
+        <div class="col-md-4">
+          <div class="card category-card">
+            <img
+              src="power-tools.jpg"
+              class="card-img-top"
+              alt="Power Tools"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Power Tools</h5>
+              <p class="card-text">
+                High-performance power tools for professional use.
+              </p>
+              <a href="#" class="btn btn-outline-primary">Shop Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Carpentry Tools -->
+        <div class="col-md-4">
+          <div class="card category-card">
+            <img
+              src="carpentry-tools.jpg"
+              class="card-img-top"
+              alt="Carpentry Tools"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Carpentry Tools</h5>
+              <p class="card-text">
+                Precision tools for woodworking and carpentry.
+              </p>
+              <a href="#" class="btn btn-outline-primary">Shop Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Agricultural Tools -->
+        <div class="col-md-4">
+          <div class="card category-card">
+            <img
+              src="agricultural-tools.jpg"
+              class="card-img-top"
+              alt="Agricultural Tools"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Agricultural Tools</h5>
+              <p class="card-text">
+                Tools to support modern agricultural practices.
+              </p>
+              <a href="#" class="btn btn-outline-primary">Shop Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Welding Tools -->
+        <div class="col-md-4">
+          <div class="card category-card">
+            <img
+              src="welding-tools.jpg"
+              class="card-img-top"
+              alt="Welding Tools"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Welding Tools</h5>
+              <p class="card-text">
+                High-quality tools for welding professionals.
+              </p>
+              <a href="#" class="btn btn-outline-primary">Shop Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Add more categories as needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Content Section -->
+  <section class="bg-light py-5">
+    <div class="container">
+      <h3 class="mb-4">Why Choose Us?</h3>
+      <p>
+        We pride ourselves on offering top quality tools at competitive prices.
+        Our user-friendly website, extensive product range, and exceptional
+        customer service ensure a seamless shopping experience for both
+        professionals and DIY enthusiasts.
+      </p>
+      <!-- Additional professional content can be added here -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-3">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2025 ToolStore. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  ></script>
+</body>
+</html>
