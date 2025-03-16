@@ -190,7 +190,13 @@
   </div>
 
   <!-- MODALS -->
-
+<!-- Include Parse SDK from a CDN -->
+<script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+<script>
+  // Initialize Parse with your Back4App keys
+  Parse.initialize("dYITxG0Ku084MmAjH3aa4rCsYBphkHR1Ua7CcIKI", "nMlAh8q6Pf63Ji7mT7mZsAfOeL3Sj2Ikl6Af2VOT");
+  Parse.serverURL = 'https://parseapi.back4app.com';
+</script>
 <!-- Add Product Modal -->
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
   <div class="modal-dialog">
