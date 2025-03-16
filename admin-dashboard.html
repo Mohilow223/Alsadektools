@@ -109,17 +109,7 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- Example product row (to be dynamically generated) -->
-                <tr data-object-id="EXAMPLE_OBJECT_ID">
-                  <td>EXAMPLE_OBJECT_ID</td>
-                  <td>Cordless Drill</td>
-                  <td>Power Tools</td>
-                  <td>$99.99</td>
-                  <td>
-                    <button class="btn btn-primary btn-sm btn-edit-product" data-object-id="EXAMPLE_OBJECT_ID" data-bs-toggle="modal" data-bs-target="#editProductModal">Edit</button>
-                    <button class="btn btn-danger btn-sm btn-delete-product" data-object-id="EXAMPLE_OBJECT_ID">Delete</button>
-                  </td>
-                </tr>
+                <!-- Products will be dynamically inserted here -->
               </tbody>
             </table>
           </div>
@@ -148,6 +138,7 @@
                     <button class="btn btn-danger btn-sm btn-delete-category" data-object-id="CATEGORY_OBJECT_ID">Delete</button>
                   </td>
                 </tr>
+                <!-- More categories can be added here -->
               </tbody>
             </table>
           </div>
@@ -178,6 +169,7 @@
                     <button class="btn btn-danger btn-sm btn-cancel-order" data-object-id="ORDER_OBJECT_ID">Cancel</button>
                   </td>
                 </tr>
+                <!-- More orders can be added here -->
               </tbody>
             </table>
           </div>
@@ -193,9 +185,65 @@
     Parse.initialize("dYITxG0Ku084MmAjH3aa4rCsYBphkHR1Ua7CcIKI", "nMlAh8q6Pf63Ji7mT7mZsAfOeL3Sj2Ikl6Af2VOT");
     Parse.serverURL = 'https://parseapi.back4app.com';
 
+    /* --------------------------------------
+       Function: Fetch and Render Products
+    -------------------------------------- */
+    async function fetchProducts() {
+      const Product = Parse.Object.extend("Product");
+      const query = new Parse.Query(Product);
+      try {
+        const products = await query.find();
+        const productsTableBody = document.querySelector("#productsTable tbody");
+        productsTableBody.innerHTML = ""; // Clear previous entries
+
+        products.forEach(product => {
+          const id = product.id;
+          const name = product.get("name");
+          const category = product.get("category");
+          const price = product.get("price");
+
+          const row = `
+            <tr data-object-id="${id}">
+              <td>${id}</td>
+              <td>${name}</td>
+              <td>${category}</td>
+              <td>$${price}</td>
+              <td>
+                <button class="btn btn-primary btn-sm btn-edit-product" data-object-id="${id}" data-bs-toggle="modal" data-bs-target="#editProductModal">Edit</button>
+                <button class="btn btn-danger btn-sm btn-delete-product" data-object-id="${id}">Delete</button>
+              </td>
+            </tr>
+          `;
+          productsTableBody.innerHTML += row;
+        });
+
+        // Re-bind event listeners for newly added edit buttons
+        document.querySelectorAll(".btn-edit-product").forEach(button => {
+          button.addEventListener("click", async function() {
+            const productId = this.getAttribute("data-object-id");
+            const Product = Parse.Object.extend("Product");
+            const query = new Parse.Query(Product);
+            try {
+              const product = await query.get(productId);
+              document.getElementById("editProductId").value = product.id;
+              document.getElementById("editProductName").value = product.get("name");
+              document.getElementById("editProductCategory").value = product.get("category");
+              document.getElementById("editProductPrice").value = product.get("price");
+              document.getElementById("editProductDescription").value = product.get("description") || "";
+            } catch (error) {
+              console.error("Error fetching product for edit:", error);
+              alert("Error fetching product details. Please try again.");
+            }
+          });
+        });
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    }
+
     /* --------------------------
        Add Product Functionality
-       -------------------------- */
+    -------------------------- */
     async function addProduct(event) {
       event.preventDefault();
       const name = document.getElementById("productName").value;
@@ -212,7 +260,6 @@
       product.set("price", price);
       product.set("description", description);
 
-      // Debug: Check file input details
       if (imageInput.files.length > 0) {
         const file = imageInput.files[0];
         console.log("Attempting to upload file:", file);
@@ -229,9 +276,9 @@
       }
 
       try {
-        const result = await product.save();
+        await product.save();
         alert("Product added successfully!");
-        // Optionally, update the products table UI with new details
+        fetchProducts(); // Refresh the products table after adding
       } catch (error) {
         console.error("Error saving product:", error);
         alert("There was an error adding the product.");
@@ -240,10 +287,9 @@
 
     /* ----------------------------
        Edit Product Functionality
-       ---------------------------- */
+    ---------------------------- */
     async function editProduct(event) {
       event.preventDefault();
-      // Retrieve the hidden product ID from the edit form
       const productId = document.getElementById("editProductId").value;
       const name = document.getElementById("editProductName").value;
       const category = document.getElementById("editProductCategory").value;
@@ -253,7 +299,6 @@
 
       const Product = Parse.Object.extend("Product");
       const query = new Parse.Query(Product);
-
       try {
         const product = await query.get(productId);
         product.set("name", name);
@@ -269,10 +314,9 @@
           product.set("image", parseFile);
           console.log("New file uploaded:", parseFile.url());
         }
-
         await product.save();
         alert("Product updated successfully!");
-        // Optionally update UI with new data
+        fetchProducts(); // Refresh the products table after editing
       } catch (error) {
         console.error("Error updating product:", error);
         alert("There was an error updating the product.");
@@ -281,7 +325,7 @@
 
     /* ----------------------------
        Update Order Status Functionality
-       ---------------------------- */
+    ---------------------------- */
     async function updateOrderStatus(orderId, newStatus) {
       const Order = Parse.Object.extend("Order");
       const query = new Parse.Query(Order);
@@ -296,8 +340,10 @@
       }
     }
 
-    // Event listeners
+    // Bind event listeners on DOM load
     document.addEventListener("DOMContentLoaded", function() {
+      fetchProducts(); // Load the products initially
+
       // Bind Add Product Form
       const addProductForm = document.getElementById("addProductForm");
       if(addProductForm) {
@@ -323,27 +369,6 @@
           updateOrderStatus(orderId, "Cancelled");
         });
       });
-
-      // Populate Edit Product Modal when clicking an Edit button
-      document.querySelectorAll(".btn-edit-product").forEach(button => {
-        button.addEventListener("click", async function() {
-          const productId = this.getAttribute("data-object-id");
-          const Product = Parse.Object.extend("Product");
-          const query = new Parse.Query(Product);
-          try {
-            const product = await query.get(productId);
-            // Populate the edit form fields
-            document.getElementById("editProductId").value = product.id;
-            document.getElementById("editProductName").value = product.get("name");
-            document.getElementById("editProductCategory").value = product.get("category");
-            document.getElementById("editProductPrice").value = product.get("price");
-            document.getElementById("editProductDescription").value = product.get("description") || "";
-          } catch (error) {
-            console.error("Error fetching product for edit:", error);
-            alert("Error fetching product details. Please try again.");
-          }
-        });
-      });
     });
   </script>
 
@@ -353,7 +378,6 @@
   <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <!-- Form with ID for binding -->
         <form id="addProductForm" enctype="multipart/form-data">
           <div class="modal-header">
             <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
@@ -401,7 +425,6 @@
   <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <!-- Form with ID and hidden field for product ID -->
         <form id="editProductForm" enctype="multipart/form-data">
           <div class="modal-header">
             <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
