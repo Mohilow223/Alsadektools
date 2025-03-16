@@ -96,35 +96,37 @@
       overflow: hidden;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       background-color: #fff;
+      height: 100%; /* Ensure cards are equal height */
     }
     .product-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
     .product-card img {
-      height: 200px;
+      height: 150px; /* Smaller image size */
       object-fit: cover;
     }
     .product-card .card-body {
       text-align: center;
-      padding: 1.5rem;
+      padding: 1rem;
     }
     .product-card .card-title {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
     .product-card .card-text {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #666;
       margin-bottom: 1rem;
     }
     .product-card .btn {
       border-radius: 50px;
-      padding: 0.5rem 1.5rem;
+      padding: 0.5rem 1rem;
       background-color: #d32f2f; /* Red color for buttons */
       border: none;
       color: #fff;
+      font-size: 0.9rem;
     }
     .product-card .btn:hover {
       background-color: #b71c1c; /* Darker red on hover */
@@ -190,7 +192,7 @@
       <h2>Most Popular Products</h2>
       <div class="row g-4">
         <!-- Product 1 -->
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="card product-card">
             <img
               src="product1.jpg"
@@ -207,7 +209,7 @@
           </div>
         </div>
         <!-- Product 2 -->
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="card product-card">
             <img
               src="product2.jpg"
@@ -224,7 +226,7 @@
           </div>
         </div>
         <!-- Product 3 -->
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="card product-card">
             <img
               src="product3.jpg"
@@ -235,6 +237,91 @@
               <h5 class="card-title">Circular Saw</h5>
               <p class="card-text">
                 Precision circular saw for smooth and accurate cuts.
+              </p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Product 4 -->
+        <div class="col-md-3">
+          <div class="card product-card">
+            <img
+              src="product4.jpg"
+              class="card-img-top"
+              alt="Product 4"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Impact Wrench</h5>
+              <p class="card-text">
+                Heavy-duty impact wrench for automotive and industrial use.
+              </p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Product 5 -->
+        <div class="col-md-3">
+          <div class="card product-card">
+            <img
+              src="product5.jpg"
+              class="card-img-top"
+              alt="Product 5"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jigsaw</h5>
+              <p class="card-text">
+                Versatile jigsaw for cutting curves and intricate shapes.
+              </p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Product 6 -->
+        <div class="col-md-3">
+          <div class="card product-card">
+            <img
+              src="product6.jpg"
+              class="card-img-top"
+              alt="Product 6"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Rotary Hammer</h5>
+              <p class="card-text">
+                Powerful rotary hammer for drilling into concrete and masonry.
+              </p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Product 7 -->
+        <div class="col-md-3">
+          <div class="card product-card">
+            <img
+              src="product7.jpg"
+              class="card-img-top"
+              alt="Product 7"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Table Saw</h5>
+              <p class="card-text">
+                Precision table saw for woodworking and carpentry.
+              </p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Product 8 -->
+        <div class="col-md-3">
+          <div class="card product-card">
+            <img
+              src="product8.jpg"
+              class="card-img-top"
+              alt="Product 8"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Air Compressor</h5>
+              <p class="card-text">
+                Reliable air compressor for powering pneumatic tools.
               </p>
               <a href="#" class="btn btn-primary">Buy Now</a>
             </div>
@@ -283,6 +370,7 @@
             </div>
           </div>
         </div>
+      
         <!-- Carpentry Tools -->
         <div class="col-md-4">
           <div class="card category-card">
