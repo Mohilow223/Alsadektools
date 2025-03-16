@@ -191,49 +191,102 @@
 
   <!-- MODALS -->
 
-  <!-- Add Product Modal -->
-  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
-          <div class="modal-header">
-            <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Add Product Modal -->
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Product fields -->
+          <div class="mb-3">
+            <label for="productName" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="productName" required>
           </div>
-          <div class="modal-body">
-            <!-- Product fields -->
-            <div class="mb-3">
-              <label for="productName" class="form-label">Product Name</label>
-              <input type="text" class="form-control" id="productName" required>
-            </div>
-            <div class="mb-3">
-              <label for="productCategory" class="form-label">Category</label>
-              <select class="form-select" id="productCategory" required>
-                <option value="">Select a Category</option>
-                <option value="hand-tools">Hand Tools</option>
-                <option value="power-tools">Power Tools</option>
-                <option value="carpentry-tools">Carpentry Tools</option>
-                <!-- More options as needed -->
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="productPrice" class="form-label">Price</label>
-              <input type="number" class="form-control" id="productPrice" required>
-            </div>
-            <div class="mb-3">
-              <label for="productDescription" class="form-label">Description</label>
-              <textarea class="form-control" id="productDescription" rows="3"></textarea>
-            </div>
+          <div class="mb-3">
+            <label for="productCategory" class="form-label">Category</label>
+            <select class="form-select" id="productCategory" required>
+              <option value="">Select a Category</option>
+              <option value="hand-tools">Hand Tools</option>
+              <option value="power-tools">Power Tools</option>
+              <option value="carpentry-tools">Carpentry Tools</option>
+              <!-- More options as needed -->
+            </select>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success">Save Product</button>
+          <div class="mb-3">
+            <label for="productPrice" class="form-label">Price</label>
+            <input type="number" class="form-control" id="productPrice" required>
           </div>
-        </form>
-      </div>
+          <div class="mb-3">
+            <label for="productDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="productDescription" rows="3"></textarea>
+          </div>
+          <!-- New File Upload for Product Image -->
+          <div class="mb-3">
+            <label for="productImage" class="form-label">Product Image</label>
+            <input type="file" class="form-control" id="productImage" accept="image/*" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Save Product</button>
+        </div>
+      </form>
     </div>
   </div>
+</div>
 
+<!-- Edit Product Modal -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Editable product fields -->
+          <div class="mb-3">
+            <label for="editProductName" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="editProductName" required>
+          </div>
+          <div class="mb-3">
+            <label for="editProductCategory" class="form-label">Category</label>
+            <select class="form-select" id="editProductCategory" required>
+              <option value="">Select a Category</option>
+              <option value="hand-tools">Hand Tools</option>
+              <option value="power-tools">Power Tools</option>
+              <option value="carpentry-tools">Carpentry Tools</option>
+              <!-- More options as needed -->
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="editProductPrice" class="form-label">Price</label>
+            <input type="number" class="form-control" id="editProductPrice" required>
+          </div>
+          <div class="mb-3">
+            <label for="editProductDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="editProductDescription" rows="3"></textarea>
+          </div>
+          <!-- New File Upload for Product Image in Edit -->
+          <div class="mb-3">
+            <label for="editProductImage" class="form-label">Product Image</label>
+            <input type="file" class="form-control" id="editProductImage" accept="image/*">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Update Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+  
   <!-- Edit Product Modal -->
   <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
