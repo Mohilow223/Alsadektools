@@ -39,12 +39,42 @@
     header a:hover {
       color: #007bff;
     }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-content h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0;
+      color: #007bff; /* Bright blue for the heading */
+    }
+    .search-box {
+      max-width: 400px;
+      flex-grow: 1;
+      margin-left: 2rem;
+    }
+    .search-box .form-control {
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid #ddd;
+    }
+    .search-box .btn {
+      border-radius: 50px;
+      padding: 0.5rem 1.5rem;
+      background-color: #007bff;
+      border: none;
+    }
+    .search-box .btn:hover {
+      background-color: #0056b3;
+    }
     /* Hero Section */
     .hero-section {
       background: url("banner-image.jpg") no-repeat center center;
       background-size: cover;
       color: #fff;
-      padding: 150px 0;
+      padding: 100px 0;
       text-align: center;
       position: relative;
     }
@@ -58,33 +88,15 @@
       background: rgba(0, 0, 0, 0.5);
     }
     .hero-section h2 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 700;
       margin-bottom: 1rem;
       position: relative;
     }
     .hero-section p {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       margin-bottom: 2rem;
       position: relative;
-    }
-    /* Search Box */
-    .search-box {
-      max-width: 600px;
-      margin: 20px auto;
-      position: relative;
-    }
-    .search-box .form-control {
-      border-radius: 50px;
-      padding: 1rem 1.5rem;
-      border: none;
-    }
-    .search-box .btn {
-      border-radius: 50px;
-      padding: 0.75rem 2rem;
-      position: absolute;
-      right: 5px;
-      top: 5px;
     }
     /* Category Cards */
     .category-card {
@@ -109,6 +121,12 @@
     .category-card .btn {
       border-radius: 50px;
       padding: 0.5rem 1.5rem;
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+    }
+    .category-card .btn:hover {
+      background-color: #0056b3;
     }
     /* Why Choose Us Section */
     .why-choose-us {
@@ -119,6 +137,7 @@
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 1.5rem;
+      color: #007bff; /* Bright blue for the heading */
     }
     .why-choose-us p {
       font-size: 1.1rem;
@@ -140,8 +159,20 @@
 <body>
   <!-- Header -->
   <header class="p-3">
-    <div class="container d-flex justify-content-between align-items-center">
-      <h1 class="h3 mb-0">ToolStore</h1>
+    <div class="container header-content">
+      <h1>ToolStore</h1>
+      <form class="search-box">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search for tools..."
+          />
+          <button class="btn btn-primary" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </form>
       <nav>
         <a href="#" class="me-3">Home</a>
         <a href="#" class="me-3">About</a>
@@ -150,7 +181,7 @@
     </div>
   </header>
 
-  <!-- Hero Section with Search -->
+  <!-- Hero Section -->
   <section class="hero-section">
     <div class="container">
       <h2>Welcome to ToolStore</h2>
@@ -158,16 +189,6 @@
         Your one-stop shop for quality tools: hand tools, power tools,
         carpentry tools, agricultural tools, welding tools, and more.
       </p>
-      <form class="search-box">
-        <div class="input-group">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Search for tools..."
-          />
-          <button class="btn btn-primary" type="submit">Search</button>
-        </div>
-      </form>
     </div>
   </section>
 
@@ -189,7 +210,7 @@
               <p class="card-text">
                 Discover our range of hand tools for every task.
               </p>
-              <a href="#" class="btn btn-outline-primary">Shop Now</a>
+              <a href="#" class="btn btn-primary">Shop Now</a>
             </div>
           </div>
         </div>
@@ -206,7 +227,7 @@
               <p class="card-text">
                 High-performance power tools for professional use.
               </p>
-              <a href="#" class="btn btn-outline-primary">Shop Now</a>
+              <a href="#" class="btn btn-primary">Shop Now</a>
             </div>
           </div>
         </div>
@@ -223,7 +244,7 @@
               <p class="card-text">
                 Precision tools for woodworking and carpentry.
               </p>
-              <a href="#" class="btn btn-outline-primary">Shop Now</a>
+              <a href="#" class="btn btn-primary">Shop Now</a>
             </div>
           </div>
         </div>
@@ -240,7 +261,7 @@
               <p class="card-text">
                 Tools to support modern agricultural practices.
               </p>
-              <a href="#" class="btn btn-outline-primary">Shop Now</a>
+              <a href="#" class="btn btn-primary">Shop Now</a>
             </div>
           </div>
         </div>
@@ -257,7 +278,7 @@
               <p class="card-text">
                 High-quality tools for welding professionals.
               </p>
-              <a href="#" class="btn btn-outline-primary">Shop Now</a>
+              <a href="#" class="btn btn-primary">Shop Now</a>
             </div>
           </div>
         </div>
