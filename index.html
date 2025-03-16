@@ -152,21 +152,27 @@
     }
 
     /* Modern button-style links in the header */
+/* Smaller, ghost-style navigation buttons */
 .nav-links a {
-  display: inline-block;         /* Allows padding & background */
-  padding: 0.5rem 1rem;
-  background-color: #d32f2f;     /* Red background to match your theme */
-  color: #fff;                   /* White text for contrast */
-  border-radius: 4px;            /* Slightly rounded corners */
+  display: inline-block;
+  padding: 0.25rem 0.75rem;           /* Reduced padding for smaller buttons */
+  background-color: transparent;      /* No background color */
+  color: #d32f2f;                     /* Red text color */
+  border: 1px solid #d32f2f;           /* Thin red border */
+  border-radius: 4px;                  /* Slightly rounded corners */
   text-decoration: none;
-  font-weight: 500;              /* Slightly bolder text */
-  transition: background-color 0.3s, transform 0.3s;
+  font-weight: 500;
+  font-size: 0.875rem;                 /* Smaller font size */
+  transition: transform 0.3s, color 0.3s;
 }
 
 .nav-links a:hover {
-  background-color: #b71c1c;     /* Darker red on hover */
-  transform: translateY(-2px);   /* Subtle lift effect */
+  color: #b71c1c;                     /* Darker red on hover */
+  transform: translateY(-2px);         /* Subtle lift effect */
 }
+
+
+    
   </style>
 </head>
 <body>
