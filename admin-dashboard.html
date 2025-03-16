@@ -120,7 +120,6 @@
                     <button class="btn btn-danger btn-sm btn-delete-product" data-object-id="EXAMPLE_OBJECT_ID">Delete</button>
                   </td>
                 </tr>
-                <!-- More products can be added here -->
               </tbody>
             </table>
           </div>
@@ -149,7 +148,6 @@
                     <button class="btn btn-danger btn-sm btn-delete-category" data-object-id="CATEGORY_OBJECT_ID">Delete</button>
                   </td>
                 </tr>
-                <!-- More categories can be added here -->
               </tbody>
             </table>
           </div>
@@ -180,7 +178,6 @@
                     <button class="btn btn-danger btn-sm btn-cancel-order" data-object-id="ORDER_OBJECT_ID">Cancel</button>
                   </td>
                 </tr>
-                <!-- More orders can be added here -->
               </tbody>
             </table>
           </div>
@@ -189,7 +186,6 @@
     </div>
   </div>
 
-  <!-- MODALS -->
   <!-- Include Parse SDK from a CDN -->
   <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
   <script>
@@ -216,13 +212,15 @@
       product.set("price", price);
       product.set("description", description);
 
-      // Handle file upload if a file is selected
+      // Debug: Check file input details
       if (imageInput.files.length > 0) {
         const file = imageInput.files[0];
+        console.log("Attempting to upload file:", file);
         const parseFile = new Parse.File(file.name, file);
         try {
           await parseFile.save();
           product.set("image", parseFile);
+          console.log("File uploaded successfully:", parseFile.url());
         } catch (error) {
           console.error("Error uploading file:", error);
           alert("File upload failed. Please try again.");
@@ -233,31 +231,19 @@
       try {
         const result = await product.save();
         alert("Product added successfully!");
-        // Optionally update the products table UI with the new product details
+        // Optionally, update the products table UI with new details
       } catch (error) {
         console.error("Error saving product:", error);
         alert("There was an error adding the product.");
       }
     }
-if (imageInput.files.length > 0) {
-  const file = imageInput.files[0];
-  console.log("Attempting to upload file:", file); // Debugging snippet attached here
-  const parseFile = new Parse.File(file.name, file);
-  try {
-    await parseFile.save();
-    product.set("image", parseFile);
-  } catch (error) {
-    console.error("Error uploading file:", error);
-    alert("File upload failed. Please try again.");
-    return;
-  }
-}
+
     /* ----------------------------
        Edit Product Functionality
        ---------------------------- */
     async function editProduct(event) {
       event.preventDefault();
-      // Retrieve the hidden product ID
+      // Retrieve the hidden product ID from the edit form
       const productId = document.getElementById("editProductId").value;
       const name = document.getElementById("editProductName").value;
       const category = document.getElementById("editProductCategory").value;
@@ -275,17 +261,18 @@ if (imageInput.files.length > 0) {
         product.set("price", price);
         product.set("description", description);
 
-        // Handle file upload if a new image is selected
         if (imageInput.files.length > 0) {
           const file = imageInput.files[0];
+          console.log("Attempting to upload new file for edit:", file);
           const parseFile = new Parse.File(file.name, file);
           await parseFile.save();
           product.set("image", parseFile);
+          console.log("New file uploaded:", parseFile.url());
         }
 
         await product.save();
         alert("Product updated successfully!");
-        // Optionally update the UI with the changes
+        // Optionally update UI with new data
       } catch (error) {
         console.error("Error updating product:", error);
         alert("There was an error updating the product.");
@@ -303,21 +290,27 @@ if (imageInput.files.length > 0) {
         order.set("status", newStatus);
         await order.save();
         alert("Order updated to " + newStatus);
-        // Optionally update the UI for the order status
       } catch (error) {
         console.error("Error updating order:", error);
         alert("Error updating order. Please try again.");
       }
     }
 
-    // Event listeners for form submissions
+    // Event listeners
     document.addEventListener("DOMContentLoaded", function() {
-      // Add Product Form
-      document.getElementById("addProductForm").addEventListener("submit", addProduct);
-      // Edit Product Form
-      document.getElementById("editProductForm").addEventListener("submit", editProduct);
+      // Bind Add Product Form
+      const addProductForm = document.getElementById("addProductForm");
+      if(addProductForm) {
+        addProductForm.addEventListener("submit", addProduct);
+      }
 
-      // Example: Event listeners for order status buttons
+      // Bind Edit Product Form
+      const editProductForm = document.getElementById("editProductForm");
+      if(editProductForm) {
+        editProductForm.addEventListener("submit", editProduct);
+      }
+
+      // Bind Order Buttons
       document.querySelectorAll(".btn-approve-order").forEach(button => {
         button.addEventListener("click", function() {
           const orderId = this.getAttribute("data-object-id");
@@ -331,7 +324,7 @@ if (imageInput.files.length > 0) {
         });
       });
 
-      // Example: Populate Edit Product Modal when clicking an edit button
+      // Populate Edit Product Modal when clicking an Edit button
       document.querySelectorAll(".btn-edit-product").forEach(button => {
         button.addEventListener("click", async function() {
           const productId = this.getAttribute("data-object-id");
@@ -339,7 +332,7 @@ if (imageInput.files.length > 0) {
           const query = new Parse.Query(Product);
           try {
             const product = await query.get(productId);
-            // Populate the edit modal fields with current product data
+            // Populate the edit form fields
             document.getElementById("editProductId").value = product.id;
             document.getElementById("editProductName").value = product.get("name");
             document.getElementById("editProductCategory").value = product.get("category");
@@ -354,11 +347,13 @@ if (imageInput.files.length > 0) {
     });
   </script>
 
+  <!-- MODALS -->
+
   <!-- Add Product Modal -->
   <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <!-- Added form ID for event binding -->
+        <!-- Form with ID for binding -->
         <form id="addProductForm" enctype="multipart/form-data">
           <div class="modal-header">
             <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
@@ -377,7 +372,6 @@ if (imageInput.files.length > 0) {
                 <option value="hand-tools">Hand Tools</option>
                 <option value="power-tools">Power Tools</option>
                 <option value="carpentry-tools">Carpentry Tools</option>
-                <!-- More options as needed -->
               </select>
             </div>
             <div class="mb-3">
@@ -388,7 +382,7 @@ if (imageInput.files.length > 0) {
               <label for="productDescription" class="form-label">Description</label>
               <textarea class="form-control" id="productDescription" rows="3"></textarea>
             </div>
-            <!-- New File Upload for Product Image -->
+            <!-- File Upload for Product Image -->
             <div class="mb-3">
               <label for="productImage" class="form-label">Product Image</label>
               <input type="file" class="form-control" id="productImage" accept="image/*" required>
@@ -407,7 +401,7 @@ if (imageInput.files.length > 0) {
   <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <!-- Added form ID for event binding and a hidden input for product id -->
+        <!-- Form with ID and hidden field for product ID -->
         <form id="editProductForm" enctype="multipart/form-data">
           <div class="modal-header">
             <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
@@ -427,7 +421,6 @@ if (imageInput.files.length > 0) {
                 <option value="hand-tools">Hand Tools</option>
                 <option value="power-tools">Power Tools</option>
                 <option value="carpentry-tools">Carpentry Tools</option>
-                <!-- More options as needed -->
               </select>
             </div>
             <div class="mb-3">
@@ -438,7 +431,7 @@ if (imageInput.files.length > 0) {
               <label for="editProductDescription" class="form-label">Description</label>
               <textarea class="form-control" id="editProductDescription" rows="3"></textarea>
             </div>
-            <!-- New File Upload for Product Image in Edit (optional) -->
+            <!-- Optional File Upload for updating Product Image -->
             <div class="mb-3">
               <label for="editProductImage" class="form-label">Product Image</label>
               <input type="file" class="form-control" id="editProductImage" accept="image/*">
