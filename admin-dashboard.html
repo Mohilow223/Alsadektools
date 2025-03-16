@@ -239,7 +239,19 @@
         alert("There was an error adding the product.");
       }
     }
-
+if (imageInput.files.length > 0) {
+  const file = imageInput.files[0];
+  console.log("Attempting to upload file:", file); // Debugging snippet attached here
+  const parseFile = new Parse.File(file.name, file);
+  try {
+    await parseFile.save();
+    product.set("image", parseFile);
+  } catch (error) {
+    console.error("Error uploading file:", error);
+    alert("File upload failed. Please try again.");
+    return;
+  }
+}
     /* ----------------------------
        Edit Product Functionality
        ---------------------------- */
