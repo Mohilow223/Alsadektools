@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ToolStore - Home</title>
+  <title>Admin Dashboard - ToolStore</title>
   <!-- Bootstrap CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -14,403 +14,320 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
     rel="stylesheet"
   />
-  <!-- Font Awesome Icons -->
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    rel="stylesheet"
-  />
-  <!-- Custom CSS -->
   <style>
     body {
-      font-family: "Inter", sans-serif;
-      color: #333;
+      font-family: 'Inter', sans-serif;
     }
-    /* Header styling */
-    header {
-      background-color: #ffffff;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 1rem 0;
-    }
-    header a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
-    header a:hover {
-      color: #d32f2f; /* Red hover color */
-    }
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .header-content h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin: 0;
-      color: #d32f2f; /* Red color for the heading */
-    }
-    .search-box {
-      width: 60%;
-      max-width: 500px;
-      margin-left: 2rem;
-    }
-    .search-box .form-control {
-      border-radius: 50px;
-      padding: 0.5rem 1.5rem;
-      border: 1px solid #ddd;
-      height: 40px; /* Reduced height */
-    }
-    .search-box .btn {
-      border-radius: 50px;
-      padding: 0.5rem 1.5rem;
-      background-color: #d32f2f; /* Red color for the button */
-      border: none;
-      height: 40px; /* Reduced height */
-    }
-    .search-box .btn:hover {
-      background-color: #b71c1c; /* Darker red on hover */
-    }
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-      margin-left: auto;
-    }
-    /* Most Popular Products Section */
-    .popular-products {
-      padding: 4rem 0;
-      background-color: #f8f9fa;
-    }
-    .popular-products h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      color: #d32f2f; /* Red color for the heading */
-      text-align: center;
-    }
-    .product-card {
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-      border: none;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
-      height: 100%; /* Ensure cards are equal height */
-    }
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    }
-    .product-card img {
-      height: 120px; /* Smaller image size */
-      object-fit: cover;
-      width: 100%;
-    }
-    .product-card .card-body {
-      text-align: center;
-      padding: 1rem;
-    }
-    .product-card .card-title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #333;
-    }
-    .product-card .card-price {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #d32f2f; /* Red color for price */
-    }
-    /* Why Choose Us Section */
-    .why-choose-us {
-      background-color: #fff;
-      padding: 4rem 0;
-    }
-    .why-choose-us h3 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: #d32f2f; /* Red color for the heading */
-      text-align: center;
-    }
-    .why-choose-us p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    /* Footer */
-    footer {
+    /* Sidebar styling */
+    .sidebar {
+      min-height: 100vh;
       background-color: #343a40;
       color: #fff;
-      padding: 2rem 0;
     }
-    footer p {
-      margin: 0;
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
     }
-
-    /* Modern button-style links in the header */
-/* Smaller, ghost-style navigation buttons */
-.nav-links a {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;           /* Reduced padding for smaller buttons */
-  background-color: transparent;      /* No background color */
-  color: #d32f2f;                     /* Red text color */
-  border: 1px solid #d32f2f;           /* Thin red border */
-  border-radius: 4px;                  /* Slightly rounded corners */
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.875rem;                 /* Smaller font size */
-  transition: transform 0.3s, color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #b71c1c;                     /* Darker red on hover */
-  transform: translateY(-2px);         /* Subtle lift effect */
-}
-
-
-    
+    .sidebar a:hover {
+      background-color: #495057;
+    }
+    .content {
+      padding: 20px;
+    }
+    /* Tab header customizations */
+    .nav-tabs .nav-link.active {
+      background-color: #d32f2f;
+      color: #fff;
+    }
+    .nav-tabs .nav-link {
+      color: #d32f2f;
+    }
+    /* Table styling */
+    table thead {
+      background-color: #f1f1f1;
+    }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="p-3">
-    <div class="container header-content">
-      <h1>ToolStore</h1>
-      <form class="search-box">
-        <div class="input-group">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Search for tools..."
-          />
-          <button class="btn btn-primary" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar Navigation -->
+      <nav class="col-md-2 sidebar d-none d-md-block">
+        <div class="position-sticky pt-3">
+          <h4 class="text-center">Admin Panel</h4>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#products-section">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#categories-section">Categories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#orders-section">Orders</a>
+            </li>
+          </ul>
         </div>
-      </form>
-      <nav class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
       </nav>
+
+      <!-- Main Content Area -->
+      <main class="col-md-10 ms-sm-auto content">
+        <h2>Admin Dashboard</h2>
+        <hr>
+        <!-- Tabs to switch between sections -->
+        <ul class="nav nav-tabs" id="adminTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="products-tab" data-bs-toggle="tab" data-bs-target="#products" type="button" role="tab" aria-controls="products" aria-selected="true">Products</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="categories-tab" data-bs-toggle="tab" data-bs-target="#categories" type="button" role="tab" aria-controls="categories" aria-selected="false">Categories</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button" role="tab" aria-controls="orders" aria-selected="false">Orders</button>
+          </li>
+        </ul>
+
+        <div class="tab-content mt-3" id="adminTabContent">
+          <!-- Products Section -->
+          <div class="tab-pane fade show active" id="products" role="tabpanel" aria-labelledby="products-tab">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h3>Products</h3>
+              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">Add Product</button>
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Example product row -->
+                <tr>
+                  <td>1</td>
+                  <td>Cordless Drill</td>
+                  <td>Power Tools</td>
+                  <td>$99.99</td>
+                  <td>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editProductModal">Edit</button>
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                  </td>
+                </tr>
+                <!-- More products can be added here -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Categories Section -->
+          <div class="tab-pane fade" id="categories" role="tabpanel" aria-labelledby="categories-tab">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h3>Categories</h3>
+              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Add Category</button>
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Category Name</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Example category row -->
+                <tr>
+                  <td>1</td>
+                  <td>Hand Tools</td>
+                  <td>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editCategoryModal">Edit</button>
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                  </td>
+                </tr>
+                <!-- More categories can be added here -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Orders Section -->
+          <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+            <h3 class="mb-3">Orders</h3>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Example order row -->
+                <tr>
+                  <td>1001</td>
+                  <td>John Doe</td>
+                  <td>$299.99</td>
+                  <td>Pending</td>
+                  <td>
+                    <button class="btn btn-info btn-sm">View</button>
+                    <button class="btn btn-success btn-sm">Approve</button>
+                    <button class="btn btn-danger btn-sm">Cancel</button>
+                  </td>
+                </tr>
+                <!-- More orders can be added here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
     </div>
-  </header>
-  
-<!-- Most Popular Products Section -->
-<section class="popular-products">
-  <div class="container">
-    <h2>Most Popular Products</h2>
-    <div class="row g-4">
-      <!-- Product 1 -->
-      <div class="col-md-3">
-        <div class="card product-card">
-          <img
-            src="product1.jpg"
-            class="card-img-top"
-            alt="Product 1"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Cordless Drill</h5>
-            <p class="card-price">$99.99</p>
-            <a href="#" class="btn btn-primary w-100">Buy Now</a>
+  </div>
+
+  <!-- MODALS -->
+
+  <!-- Add Product Modal -->
+  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        </div>
-      </div>
-      <!-- Product 2 -->
-      <div class="col-md-3">
-        <div class="card product-card">
-          <img
-            src="product2.jpg"
-            class="card-img-top"
-            alt="Product 2"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Angle Grinder</h5>
-            <p class="card-price">$129.99</p>
-            <a href="#" class="btn btn-primary w-100">Buy Now</a>
+          <div class="modal-body">
+            <!-- Product fields -->
+            <div class="mb-3">
+              <label for="productName" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="productName" required>
+            </div>
+            <div class="mb-3">
+              <label for="productCategory" class="form-label">Category</label>
+              <select class="form-select" id="productCategory" required>
+                <option value="">Select a Category</option>
+                <option value="hand-tools">Hand Tools</option>
+                <option value="power-tools">Power Tools</option>
+                <option value="carpentry-tools">Carpentry Tools</option>
+                <!-- More options as needed -->
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="productPrice" class="form-label">Price</label>
+              <input type="number" class="form-control" id="productPrice" required>
+            </div>
+            <div class="mb-3">
+              <label for="productDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="productDescription" rows="3"></textarea>
+            </div>
           </div>
-        </div>
-      </div>
-      <!-- Product 3 -->
-      <div class="col-md-3">
-        <div class="card product-card">
-          <img
-            src="product3.jpg"
-            class="card-img-top"
-            alt="Product 3"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Circular Saw</h5>
-            <p class="card-price">$149.99</p>
-            <a href="#" class="btn btn-primary w-100">Buy Now</a>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Save Product</button>
           </div>
-        </div>
-      </div>
-      <!-- Product 4 -->
-      <div class="col-md-3">
-        <div class="card product-card">
-          <img
-            src="product4.jpg"
-            class="card-img-top"
-            alt="Product 4"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Impact Wrench</h5>
-            <p class="card-price">$199.99</p>
-            <a href="#" class="btn btn-primary w-100">Buy Now</a>
-          </div>
-        </div>
-      </div>
-      <!-- Product 5 -->
-      <div class="col-md-3">
-        <div class="card product-card">
-          <img
-            src="product5.jpg"
-            class="card-img-top"
-            alt="Product 5"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Jigsaw</h5>
-            <p class="card-price">$79.99</p>
-            <a href="#" class="btn btn-primary w-100">Buy Now</a>
-          </div>
-        </div>
-      </div>
-      <!-- Product 6 -->
-      <div class="col-md-3">
-        <div class="card product-card">
-          <img
-            src="product6.jpg"
-            class="card-img-top"
-            alt="Product 6"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Rotary Hammer</h5>
-            <p class="card-price">$179.99</p>
-            <a href="#" class="btn btn-primary w-100">Buy Now</a>
-          </div>
-        </div>
-      </div>
-      <!-- Product 7 -->
-      <div class="col-md-3">
-        <div class="card product-card">
-          <img
-            src="product7.jpg"
-            class="card-img-top"
-            alt="Product 7"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Table Saw</h5>
-            <p class="card-price">$249.99</p>
-            <a href="#" class="btn btn-primary w-100">Buy Now</a>
-          </div>
-        </div>
-      </div>
-      <!-- Product 8 -->
-      <div class="col-md-3">
-        <div class="card product-card">
-          <img
-            src="product8.jpg"
-            class="card-img-top"
-            alt="Product 8"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Air Compressor</h5>
-            <p class="card-price">$299.99</p>
-            <a href="#" class="btn btn-primary w-100">Buy Now</a>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
-</section>
-  <!-- Categories Section -->
-  <section class="py-5">
-    <div class="container">
-      <h3 class="mb-4 text-center">Product Categories</h3>
-      <div class="row g-4">
-        <!-- Hand Tools -->
-        <div class="col-md-4">
-          <div class="card category-card">
-            <img
-              src="hand-tools.jpg"
-              class="card-img-top"
-              alt="Hand Tools"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Hand Tools</h5>
-              <p class="card-text">
-                Discover our range of hand tools for every task.
-              </p>
-              <a href="#" class="btn btn-primary">Shop Now</a>
+
+  <!-- Edit Product Modal -->
+  <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Editable product fields -->
+            <div class="mb-3">
+              <label for="editProductName" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="editProductName" required>
+            </div>
+            <div class="mb-3">
+              <label for="editProductCategory" class="form-label">Category</label>
+              <select class="form-select" id="editProductCategory" required>
+                <option value="">Select a Category</option>
+                <option value="hand-tools">Hand Tools</option>
+                <option value="power-tools">Power Tools</option>
+                <option value="carpentry-tools">Carpentry Tools</option>
+                <!-- More options as needed -->
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="editProductPrice" class="form-label">Price</label>
+              <input type="number" class="form-control" id="editProductPrice" required>
+            </div>
+            <div class="mb-3">
+              <label for="editProductDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="editProductDescription" rows="3"></textarea>
             </div>
           </div>
-        </div>
-        <!-- Power Tools -->
-        <div class="col-md-4">
-          <div class="card category-card">
-            <img
-              src="power-tools.jpg"
-              class="card-img-top"
-              alt="Power Tools"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Power Tools</h5>
-              <p class="card-text">
-                High-performance power tools for professional use.
-              </p>
-              <a href="#" class="btn btn-primary">Shop Now</a>
-            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Update Product</button>
           </div>
-        </div>
-        <!-- Carpentry Tools -->
-        <div class="col-md-4">
-          <div class="card category-card">
-            <img
-              src="carpentry-tools.jpg"
-              class="card-img-top"
-              alt="Carpentry Tools"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Carpentry Tools</h5>
-              <p class="card-text">
-                Precision tools for woodworking and carpentry.
-              </p>
-              <a href="#" class="btn btn-primary">Shop Now</a>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Why Choose Us Section -->
-  <section class="why-choose-us">
-    <div class="container text-center">
-      <h3>Why Choose Us?</h3>
-      <p>
-        We pride ourselves on offering top quality tools at competitive prices.
-        Our user-friendly website, extensive product range, and exceptional
-        customer service ensure a seamless shopping experience for both
-        professionals and DIY enthusiasts.
-      </p>
+  <!-- Add Category Modal -->
+  <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="addCategoryModalLabel">Add Category</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Category field -->
+            <div class="mb-3">
+              <label for="categoryName" class="form-label">Category Name</label>
+              <input type="text" class="form-control" id="categoryName" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Save Category</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white py-3">
-    <div class="container text-center">
-      <p class="mb-0">&copy; 2025 ToolStore. All rights reserved.</p>
+  <!-- Edit Category Modal -->
+  <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Editable category field -->
+            <div class="mb-3">
+              <label for="editCategoryName" class="form-label">Category Name</label>
+              <input type="text" class="form-control" id="editCategoryName" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Update Category</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </footer>
+  </div>
 
   <!-- Bootstrap Bundle with Popper -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
